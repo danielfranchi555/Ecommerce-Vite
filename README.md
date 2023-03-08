@@ -1,2 +1,2 @@
 # Ecommerce React Vite
-![Animation](https://user-images.githubusercontent.com/102195964/223582479-d6029760-19f0-44b0-8e13-28f8f7e2d225.gif)
+![Animation](https://user-images.githubusercontent.com/102195964/223583408-5b84d686-3880-4dcf-9095-e824350f5574.gif)
