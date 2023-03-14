@@ -9,7 +9,7 @@ import CartWidget from '../CartWidget/CartWidget';
 const NavBar = () => {
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light"  expand="lg">
     <Container>
       <Link to={"/"}>
       <Navbar.Brand href="#home">Ecommerce</Navbar.Brand>

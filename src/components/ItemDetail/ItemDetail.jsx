@@ -1,46 +1,59 @@
-import { Button, Card, CardBody, CardFooter, Center, Heading, Image, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, Card, CardBody, CardFooter, Center, Heading, Image, Stack, Text, useToast } from '@chakra-ui/react'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { UseCartContext } from '../Context/Context'
+import ItemCount from '../ItemCount/ItemCount'
 
 const ItemDetail = ({product}) => {
+  const toast = useToast()
+
+  const {cart,addProduct} =UseCartContext()
+ 
+
+const onAdd = (quantity)=>{
+  addProduct({...product,quantity})
+
+}
   return (
-    <div style={{display:'flex',justifyContent:'center',alignItems:'center'}} >
-        <div style={{width:'700px',margin:'20px'}}>
-             <Card
+<Card
   direction={{ base: 'column', sm: 'row' }}
   overflow='hidden'
   variant='outline'
+  maxW={{ base: '400px', sm: '700px' }}
+  mt='60px'
+
 >
-    <Center>
-         <Image
+  <Center>
+      <Image
     objectFit='cover'
-    maxW={{ base: '200px', sm: '200px' }}
+    maxW={{ base: '130px', sm: '200px' }}
     src={product.image}
     alt='Caffe Latte'
+    mt='10px'
+    m='20px'
   />
-    </Center>
-  <Stack>
-    <CardBody>
-      <Heading size='md'>The perfect latte</Heading>
+  </Center>
 
-      <Text py='2'>
-       {product.description}
+  <Stack>
+      <Center>
+          <CardBody maxH={{ base: '290px', sm: '200px' }}>
+      <Heading size='md'>The perfect latte</Heading>
+      <Text py='2' style={{fontSize:'14px'}}>
+        {product.description}
       </Text>
     </CardBody>
+      </Center>
+  
 
-    <CardFooter>
-        <Link to={'/cart'}>
-        <Button variant='solid' colorScheme='blue'>
-        Add to Cart
-      </Button>
-        </Link>
-      
+
+    <Center>
+       <CardFooter>
+    <ItemCount toast={toast} onAdd={onAdd}  product={product} initial ={1} stock ={5}/> 
+     
     </CardFooter>
+    </Center>
+   
   </Stack>
 </Card>
-        </div>
-       
-    </div>
   )
 }
 

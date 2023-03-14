@@ -18,8 +18,8 @@ const Item = ({prod}) => {
    
     <Stack mt='6' spacing='3'>
       <Heading size='md'>Living room Sofa</Heading>
-      <Text color='blue.600' fontSize='2xl'>
-        $450
+      <Text color='#42b883' style={{fontWeight:'700'}} fontSize='2x2'>
+        {prod.price}$
       </Text>
     </Stack>
   </CardBody>
@@ -27,7 +27,7 @@ const Item = ({prod}) => {
   <CardFooter>
     <ButtonGroup spacing='2'>
         <Link to={`/detalle/${prod.id}`}> 
-         <Button variant='solid' colorScheme='blue'>
+         <Button colorScheme='teal' variant='outline'  border=' solid 1px #42b883'>
         View Detail
       </Button>
         </Link>
