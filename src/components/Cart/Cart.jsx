@@ -1,6 +1,7 @@
-import { Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
+import { Center, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
 import React from 'react'
 import { UseCartContext } from '../Context/Context'
+import Form from '../Form/Form'
 
 const Cart = () => {
   const {cart,precioTotal} = UseCartContext()
@@ -15,6 +16,7 @@ const Cart = () => {
     <Thead>
       <Tr>
         <Th>Product</Th>
+        <Th>Price</Th>
         <Th>Quantity</Th>
         <Th>SubTotal</Th>
       </Tr>
@@ -23,6 +25,7 @@ const Cart = () => {
       {cart.map((item)=>(
          <Tr key={item.id}>
         <Td> <img src={item.image} style={{width:'80px'}}alt="" /> </Td>
+        <Td>{item.price}</Td>
         <Td>{item.quantity}</Td>
         <Td>{item.quantity * item.price}$</Td>
       </Tr>
@@ -30,7 +33,12 @@ const Cart = () => {
     </Tbody>
   </Table>
 </TableContainer>
-     {precioTotal()} 
+<Center>
+
+<Form/>
+</Center>
+
+    $ {precioTotal()}
 
         
     </div>

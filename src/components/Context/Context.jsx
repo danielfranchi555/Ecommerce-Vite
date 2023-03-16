@@ -1,10 +1,10 @@
 import { Box, useToast } from '@chakra-ui/react'
 import React, { createContext, useContext, useState } from 'react'
-// CREO EL CONTEXTO //
+ // CREO EL CONTEXTO //
 export const CartContext = createContext()
 
 //CREO UNA FUNCION QUE RETORNE EL CONTEXTO  PARA USARLO//
-export const UseCartContext = ()=> useContext(CartContext) 
+export const UseCartContext = ()=> useContext(CartContext)  
 
 
 const Context = ({children}) => {
@@ -26,10 +26,10 @@ const Context = ({children}) => {
      setCart([...cart,product])
      toast({
       title: 'Producto agregado al carrito.',
-      button:'hola',
       status: 'success',
       duration: 3000,
       isClosable: true,
+      Button :true
     })
   } 
    
@@ -39,7 +39,7 @@ const Context = ({children}) => {
 //FUNCION PARA CALCULAR EL PRECIO TOTAL //
  const precioTotal = ()=>{
  const totalPrice = cart.reduce((acc,prod)=>(acc= acc + prod.price * prod.quantity),0)
-  return totalPrice.toFixed(2)
+  return totalPrice.toFixed(3)
  }
  
  //FUNCION QUE RETORNA LA CANTIDAD DE OBJETOS//

@@ -1,7 +1,9 @@
 import { Button, Center, Spinner } from '@chakra-ui/react'
+import { collection, getDocs, onSnapshot, query, where } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { UseCartContext } from '../Context/Context'
+import { db } from '../../firebase'
+import Video from '../Video/Video'
 import ItemList from '../ItemList/ItemList'
 
 const ItemListContainer = () => {
@@ -9,33 +11,52 @@ const ItemListContainer = () => {
   const [loading,setLoading]= useState(true)
 
    const {category}= useParams()
-    const getProducts = async ()=>{
-        const data = await fetch('https://fakestoreapi.com/products')
-        const resp = await data.json()
-        setProducts(resp)
-        setLoading(false)
-        console.log(products)
-    }
+
+   const getProducts =  ()=>{
+    const queryCollection = collection(db,'products')
+     onSnapshot((queryCollection),(prod)=>{
+       setProducts(prod.docs.map(prod=> ({id:prod.id,...prod.data()})))
+
+       setLoading(false)
+     })
+ }
 
 
-    useEffect(()=>{
-     getProducts()
-    },[])
+
+   const productsFilter =  ()=>{
+     const queryCollection = collection(db,'products')
+      const queryFiltrada = query(queryCollection,where('categorie', '==',`${category}`))
+      onSnapshot((queryFiltrada),(prod)=>{
+         setLoading(false)
+        setProducts(prod.docs.map(prod=> ({id:prod.id,...prod.data()})))
+      })
+    
+   
+  }
+  useEffect(()=>{
+    productsFilter()
+   },[category])
+    
+ useEffect(()=>{
+  if(category){
+    productsFilter()
+  }else{
+
+    getProducts()
+  }
+ },[category])
+
   
-    const productosFiltrados = products.filter((prod)=>prod.category === category)
-    console.log(productosFiltrados)
   return (
     <> 
-       <Center >
-         {loading ? <Spinner  thickness='4px'
+    <Video/>
+      <Center >
+         {loading ? <Spinner mt='20px' thickness='4px'
   speed='0.65s'
   emptyColor='gray.200'
   color='blue.500'
   size='xl'/> :
-       !category? <ItemList products={products}/>  :<ItemList products={productosFiltrados}/>
-      
-      
-      }
+       <ItemList products={products}/>  }
      
        </Center>
       

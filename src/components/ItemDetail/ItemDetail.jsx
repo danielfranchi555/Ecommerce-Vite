@@ -36,7 +36,7 @@ const onAdd = (quantity)=>{
   <Stack>
       <Center>
           <CardBody maxH={{ base: '290px', sm: '200px' }}>
-      <Heading size='md'>The perfect latte</Heading>
+      <Heading size='md'>{product.title}</Heading>
       <Text py='2' style={{fontSize:'14px'}}>
         {product.description}
       </Text>

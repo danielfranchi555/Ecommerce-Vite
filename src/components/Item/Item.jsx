@@ -12,12 +12,12 @@ const Item = ({prod}) => {
       src={prod.image}
       alt='Green double couch with wooden legs'
       borderRadius='lg'
-      style={{height:'200px',width:'150px'}}
-    />
+      maxW={{ base: '100%', sm: '170px' }}
+      />
     </Center>
    
     <Stack mt='6' spacing='3'>
-      <Heading size='md'>Living room Sofa</Heading>
+      <Heading w='140px' h='100px' size='md'>{prod.title}</Heading>
       <Text color='#42b883' style={{fontWeight:'700'}} fontSize='2x2'>
         {prod.price}$
       </Text>

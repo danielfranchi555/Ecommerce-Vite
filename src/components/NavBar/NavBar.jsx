@@ -20,20 +20,18 @@ const NavBar = () => {
         <Nav className="me-auto">
           <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#link">Link</Nav.Link>
-          <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+          <NavDropdown title="Categories" id="basic-nav-dropdown">
 
-            <Link to={`/category/${"men's clothing"}`}>
-            <NavDropdown.Item href="#action/3.1">Men</NavDropdown.Item>
+            <Link to={`/category/${"iphone"}`}>
+            <NavDropdown.Item href="#action/3.1">Iphone</NavDropdown.Item>
             </Link>
-           <Link to={`/category/${"women's clothing"}`}>
-            <NavDropdown.Item href="#action/3.1">Women</NavDropdown.Item>
+           <Link to={`/category/${"macbook"}`}>
+            <NavDropdown.Item href="#action/3.1">Macbook</NavDropdown.Item>
             </Link>
-            <Link to={`/category/${"jewelery"}`}>
-            <NavDropdown.Item href="#action/3.1">jewelery</NavDropdown.Item>
+            <Link to={`/category/${"watch"}`}>
+            <NavDropdown.Item href="#action/3.1">Watch</NavDropdown.Item>
             </Link>
-            <Link to={`/category/${"electronics"}`}>
-            <NavDropdown.Item href="#action/3.1">electronics</NavDropdown.Item>
-            </Link>
+
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>

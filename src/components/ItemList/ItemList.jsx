@@ -4,7 +4,7 @@ import Item from '../Item/Item'
 
 const ItemList = ({products}) => {
   return (
-    <Wrap justify='center' mt='60px'>
+    <Wrap justify='center'  mt='60px'>
         {products.map((prod)=>(
             <WrapItem key={prod.id}  >
                 <Center>
