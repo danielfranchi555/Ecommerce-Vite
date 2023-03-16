@@ -1,13 +1,14 @@
 import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Center, Divider, Heading, Image, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Fade from 'react-reveal/Fade';
 
 const Item = ({prod}) => {
 
  
 
   return (
-    <>
+    <Fade >
 <Card maxW='xs'>
   <CardBody>
     <Image
@@ -43,7 +44,7 @@ const Item = ({prod}) => {
     </ButtonGroup>
   </CardFooter>
 </Card>
-</>
+</Fade>
   )
 }
 
