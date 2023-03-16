@@ -5,14 +5,13 @@ import iphone from "../../img/icon-iphone.png";
 import macbook from "../../img/icon-macbook..png";
 import watch from "../../img/icon-watch.png";
 import airpods from "../../img/icon-airpods.png";
-import Fade from 'react-reveal/Fade';
 
 
 const Categories = () => {
   return (
 
     
-      <Fade right>
+      <div >
   <ul
         style={{
           display:'flex',
@@ -68,7 +67,7 @@ const Categories = () => {
        
      
       </ul>
-      </Fade>
+      </div>
     
     
   );
