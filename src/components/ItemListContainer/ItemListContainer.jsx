@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom'
 import { db } from '../../firebase'
 import Categories from '../Categories/Categories'
 import ItemList from '../ItemList/ItemList'
-import Fade from 'react-reveal/Fade';
 
 const ItemListContainer = () => {
   const [products,setProducts]=useState([])

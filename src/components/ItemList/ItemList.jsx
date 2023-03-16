@@ -1,7 +1,7 @@
 import { Center, Wrap, WrapItem } from '@chakra-ui/react'
 import React from 'react'
 import Item from '../Item/Item'
- import Fade from 'react-reveal/Fade';
+import Fade from 'react-reveal/Fade'
  
 
 const ItemList = ({products}) => {
