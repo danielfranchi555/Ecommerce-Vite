@@ -1,40 +1,48 @@
-import { Button, ButtonGroup, Card, CardBody, CardFooter, Center, Divider, Heading, Image, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Center, Divider, Heading, Image, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Item = ({prod}) => {
+
+ 
+
   return (
     <>
-<Card  style={{margin:'50px'}} >
+<Card maxW='xs'>
   <CardBody>
-    <Center>
-         <Image
+    <Image
       src={prod.image}
-      alt='Green double couch with wooden legs'
+  
       borderRadius='lg'
-      maxW={{ base: '100%', sm: '170px' }}
-      />
-    </Center>
-   
+      maxW={{ base: '100%', sm: '200px' }}
+      maxH={{ base: '100%', sm: '200px' }}
+
+    />
     <Stack mt='6' spacing='3'>
-      <Heading w='140px' h='100px' size='md'>{prod.title}</Heading>
-      <Text color='#42b883' style={{fontWeight:'700'}} fontSize='2x2'>
-        {prod.price}$
+      <Heading size='md' w='140px' h='50px' >{prod.title}</Heading>
+      <Text>
+    
+      </Text>
+      <Text color='black' mt='10px' fontWeight='200' fontSize='2xl'>
+        <Box mt='10'>
+        ${prod.price}
+
+        </Box>
       </Text>
     </Stack>
   </CardBody>
   <Divider />
   <CardFooter>
     <ButtonGroup spacing='2'>
-        <Link to={`/detalle/${prod.id}`}> 
-         <Button colorScheme='teal' variant='outline'  border=' solid 1px #42b883'>
+      <Link to={`/detalle/${prod.id}`}>
+       <Button color='#42b883' variant='outline' colorScheme='blue'>
         View Detail
       </Button>
-        </Link>
+      </Link>
      
     </ButtonGroup>
   </CardFooter>
-</Card>  
+</Card>
 </>
   )
 }

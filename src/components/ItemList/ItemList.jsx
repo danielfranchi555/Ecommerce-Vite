@@ -1,10 +1,14 @@
 import { Center, Wrap, WrapItem } from '@chakra-ui/react'
 import React from 'react'
 import Item from '../Item/Item'
+ import Fade from 'react-reveal/Fade';
+ 
 
 const ItemList = ({products}) => {
   return (
-    <Wrap justify='center'  mt='60px'>
+    <div>
+      <Fade>
+        <Wrap justify='center'  mt='60px'>
         {products.map((prod)=>(
             <WrapItem key={prod.id}  >
                 <Center>
@@ -14,6 +18,12 @@ const ItemList = ({products}) => {
         ))}
     
     </Wrap>
+      </Fade>
+         
+     
+   
+    </div>
+    
   )
 }
 

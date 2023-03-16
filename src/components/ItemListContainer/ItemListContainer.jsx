@@ -1,10 +1,11 @@
-import { Button, Center, Spinner } from '@chakra-ui/react'
+import { Box, Center, Spinner } from '@chakra-ui/react'
 import { collection, getDocs, onSnapshot, query, where } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { db } from '../../firebase'
-import Video from '../Video/Video'
+import Categories from '../Categories/Categories'
 import ItemList from '../ItemList/ItemList'
+import Fade from 'react-reveal/Fade';
 
 const ItemListContainer = () => {
   const [products,setProducts]=useState([])
@@ -48,21 +49,31 @@ const ItemListContainer = () => {
 
   
   return (
-    <> 
-    <Video/>
-      <Center >
-         {loading ? <Spinner mt='20px' thickness='4px'
-  speed='0.65s'
-  emptyColor='gray.200'
-  color='blue.500'
-  size='xl'/> :
-       <ItemList products={products}/>  }
-     
-       </Center>
+    
+     <>
+
+       {loading ?
+       <Center>
+       <Spinner justify='center'  mt='20px' thickness='4px' speed='0.65s'  emptyColor='gray.200'  color='blue.500'  size='xl'/>
+        </Center>
+   :
+   
+ 
+   <div>
+     <Box mt='20px'>
+      <Categories/>
       
-        
-     
-    </>
+    </Box>
+      <Box  >
+       <ItemList products={products}/> 
+       </Box>
+   </div>
+   
+
+  
+      }
+    </>   
+   
        
         
   

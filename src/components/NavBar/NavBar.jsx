@@ -20,26 +20,14 @@ const NavBar = () => {
         <Nav className="me-auto">
           <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#link">Link</Nav.Link>
-          <NavDropdown title="Categories" id="basic-nav-dropdown">
-
-            <Link to={`/category/${"iphone"}`}>
-            <NavDropdown.Item href="#action/3.1">Iphone</NavDropdown.Item>
-            </Link>
-           <Link to={`/category/${"macbook"}`}>
-            <NavDropdown.Item href="#action/3.1">Macbook</NavDropdown.Item>
-            </Link>
-            <Link to={`/category/${"watch"}`}>
-            <NavDropdown.Item href="#action/3.1">Watch</NavDropdown.Item>
-            </Link>
-
-          </NavDropdown>
         </Nav>
-      </Navbar.Collapse>
+
       <Link to={'/cart'}>
       <div>
         <CartWidget/>
       </div>
       </Link>
+      </Navbar.Collapse>
       
     </Container>
   </Navbar>

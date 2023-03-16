@@ -1,4 +1,4 @@
-import { Box, useToast } from '@chakra-ui/react'
+import {  useToast } from '@chakra-ui/react'
 import React, { createContext, useContext, useState } from 'react'
  // CREO EL CONTEXTO //
 export const CartContext = createContext()
@@ -8,10 +8,18 @@ export const UseCartContext = ()=> useContext(CartContext)
 
 
 const Context = ({children}) => {
-  const saludo = ()=> console.log('saludo')
+
   const [cart,setCart]= useState([])
   const toast = useToast()
+  // HAGO UN GET DE TODOS LOS PRODUCTOS DEL LOCALSTORAGE//
+  const dataLocalStorage = localStorage.getItem('products')
+   
+ 
+  
 
+
+
+ 
 
 
 /*FUNCION PARA AGREGAR PRODUCTOS AL CARRITO */
@@ -23,7 +31,7 @@ const Context = ({children}) => {
      cart[idx].quantity = cant + product.quantity
    }else{
    // y si no existe que lo agregue al cart//
-     setCart([...cart,product])
+   setCart([...cart,product])
      toast({
       title: 'Producto agregado al carrito.',
       status: 'success',
@@ -31,11 +39,13 @@ const Context = ({children}) => {
       isClosable: true,
       Button :true
     })
+
   } 
+
    
 }
   
-  
+  console.log(cart)
 //FUNCION PARA CALCULAR EL PRECIO TOTAL //
  const precioTotal = ()=>{
  const totalPrice = cart.reduce((acc,prod)=>(acc= acc + prod.price * prod.quantity),0)
@@ -52,11 +62,10 @@ const Context = ({children}) => {
 
   return (
     <CartContext.Provider value={{
- saludo,
  addProduct,
  precioTotal,
  prodCant,
- cart
+ cart,
     }}>
          {children}
     </CartContext.Provider>

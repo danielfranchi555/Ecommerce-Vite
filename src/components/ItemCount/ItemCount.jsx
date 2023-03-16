@@ -1,6 +1,5 @@
 import { Box, Button } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import { UseCartContext } from '../Context/Context'
 
 const ItemCount = ({initial,stock,onAdd}) => {
     const [count ,setCount] =useState(initial)
@@ -12,9 +11,7 @@ const ItemCount = ({initial,stock,onAdd}) => {
         setCount(count - 1)
     }
 
-    const {cart} =UseCartContext()
 
-    console.log(cart)
   return (
     <div style={{display:'flex', alignItems:'center', marginLeft:'10px'}}>
        <Button  mr='20px' padding ={5} onClick={()=>onAdd(count)} variant='solid' color='#42b883'>
