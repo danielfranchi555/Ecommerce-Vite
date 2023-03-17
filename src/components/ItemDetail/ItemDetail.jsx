@@ -23,7 +23,7 @@ useEffect(()=>{
   direction={{ base: 'column', sm: 'row' }}
   overflow='hidden'
   variant='outline'
-  maxW={{ base: '300px', sm: '700px' }}
+  maxW={{ base:'340px', sm: '700px' }}
   mt='60px' 
 >
   <Center>
@@ -39,8 +39,8 @@ useEffect(()=>{
 
   <Center >
           <CardBody style={{display:'flex',flexDirection:'column',justifyContent:'center'}}  maxH={{ base: '260px', sm: '260px' }}>
-      <Heading py='1' size='md'>{product.title}</Heading>
-         <Text py='3'  style={{fontSize:'14px'}}>
+      <Heading py='1' size='xs'>{product.title}</Heading>
+         <Text py='1'  style={{fontSize:'14px'}}>
         {product.description}
               <Box fontSize='30px'  >  ${product.price} </Box>
        <ItemCount toast={toast} onAdd={onAdd}  product={product} initial ={1} stock ={5}/> 
