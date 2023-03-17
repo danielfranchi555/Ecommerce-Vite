@@ -6,11 +6,9 @@ import Form from '../Form/Form'
 const Cart = () => {
   const {cart,precioTotal,setCart,setCountProducts,countProducts} = UseCartContext()
 
-  console.log(countProducts)
 
   const deleteProduct =(product)=>{
    const newArray = cart.filter(prod => prod.id != product.id)
-
    setCart(newArray)
    setCountProducts(countProducts - product.quantity)
   } 

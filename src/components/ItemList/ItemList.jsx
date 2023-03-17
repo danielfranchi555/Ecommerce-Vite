@@ -6,7 +6,7 @@ import Item from '../Item/Item'
 const ItemList = ({products}) => {
   return (
     <div >
-        <Wrap justify='center'   mt='60px'>
+        <Wrap justify='center'   mt='20px'>
         {products.map((prod)=>(
            <Center>
             <WrapItem  key={prod.id}  w='200px' >

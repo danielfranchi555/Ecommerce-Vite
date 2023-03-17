@@ -60,8 +60,7 @@ const ItemListContainer = () => {
    
  
    <Box >
-     <Box mt='20px'>
-      
+     <Box mt='15px'>
       <Categories/>
     </Box>
       <Box >

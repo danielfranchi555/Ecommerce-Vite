@@ -5,7 +5,6 @@ const CartWidget = () => {
   //ESTADO PARA MOSTRAR LA CANTIDAD DE PRODUCTOS 
   const {countProducts}= UseCartContext()
  
-  console.log(countProducts)
   return (
     <div style={{display:'flex',alignItems:'center'}}>
      <div>
