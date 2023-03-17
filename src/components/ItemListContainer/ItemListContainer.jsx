@@ -3,6 +3,7 @@ import { collection, onSnapshot, query, where } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { db } from '../../firebase'
+import Banner from '../Banner/Banner'
 import Categories from '../Categories/Categories'
 import ItemList from '../ItemList/ItemList'
 
@@ -58,15 +59,15 @@ const ItemListContainer = () => {
    :
    
  
-   <div>
+   <Box >
      <Box mt='20px'>
-      <Categories/>
       
+      <Categories/>
     </Box>
-      <Box  >
-       <ItemList products={products}/> 
+      <Box >
+       <ItemList  products={products}/> 
        </Box>
-   </div>
+   </Box>
    
 
   

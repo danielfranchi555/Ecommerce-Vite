@@ -5,14 +5,19 @@ import Item from '../Item/Item'
 
 const ItemList = ({products}) => {
   return (
-    <div>
-        <Wrap justify='center'  mt='60px'>
+    <div >
+        <Wrap justify='center'   mt='60px'>
         {products.map((prod)=>(
-            <WrapItem key={prod.id}  >
-                <Center>
+           <Center>
+            <WrapItem  key={prod.id}  w='200px' >
+              <Center>
                     <Item prod={prod}/>
-                </Center>
+              </Center>
+                
             </WrapItem>
+           </Center>
+            
+            
         ))}
     
     </Wrap>

@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react'
 import carritoPng from '../../img/carrito-compras.png'
 import { UseCartContext } from '../Context/Context'
 const CartWidget = () => {
-  const {cart,prodCant}= UseCartContext()
+  const {cart}= UseCartContext()
 
+ 
+  
+  const prodCant = ()=>{
+    let cantidadProducts = cart.reduce((acc,prod)=>(acc = acc + prod.quantity ),0 )
+    return cantidadProducts
+  }
 
-
-
+  
   return (
     <div style={{display:'flex',alignItems:'center'}}>
      <div>

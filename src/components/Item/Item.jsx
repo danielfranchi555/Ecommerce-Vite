@@ -8,15 +8,16 @@ const Item = ({prod}) => {
  
 
   return (
-    <Fade >
-<Card maxW='xs'>
+    <Box >
+        <Fade  >
+<Card maxW='xs' mt='20px'>
   <CardBody>
     <Image
       src={prod.image}
   
       borderRadius='lg'
-      maxW={{ base: '100%', sm: '200px' }}
-      maxH={{ base: '100%', sm: '200px' }}
+      maxW={{ base: '100%', sm: '150px' }}
+      maxH={{ base: '100%', sm: '150px' }}
 
     />
     <Stack mt='6' spacing='3'>
@@ -36,7 +37,7 @@ const Item = ({prod}) => {
   <CardFooter>
     <ButtonGroup spacing='2'>
       <Link to={`/detalle/${prod.id}`}>
-       <Button color='#42b883' variant='outline' colorScheme='blue'>
+       <Button color='#66bfbf' variant='outline' colorScheme='blue'>
         View Detail
       </Button>
       </Link>
@@ -45,6 +46,8 @@ const Item = ({prod}) => {
   </CardFooter>
 </Card>
 </Fade>
+    </Box>
+  
   )
 }
 

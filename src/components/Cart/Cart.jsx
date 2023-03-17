@@ -14,8 +14,8 @@ const Cart = () => {
     <div style={{textAlign:'center'}}>
       <h1 style={{fontSize:'50px'}}>Cart</h1>
       { !cart ? <h1>no hay productos </h1>:
-         <TableContainer>
-  <Table variant='simple'>
+         <TableContainer color='black' >
+  <Table variant='simple' >
     <TableCaption>Imperial to metric conversion factors</TableCaption>
     <Thead>
       <Tr>
@@ -29,7 +29,7 @@ const Cart = () => {
     <Tbody>
       {cart.map((item)=>(
          <Tr key={item.id}>
-        <Td> <img src={item.image} style={{width:'80px'}}alt="" /> </Td>
+        <Td> <img src={item.image} style={{width:'100px'}}alt="" /> </Td>
         <Td>{item.price}</Td>
         <Td>{item.quantity}</Td>
         <Td>{item.quantity * item.price}$</Td>

@@ -28,13 +28,14 @@ const Context = ({children}) => {
    if(idx !== -1 ){
      //si el producto existe// 
      const cant = cart[idx].quantity
-     cart[idx].quantity = cant + product.quantity
+     cart[idx].quantity += 1 
    }else{
    // y si no existe que lo agregue al cart//
    setCart([...cart,product])
      toast({
       title: 'Producto agregado al carrito.',
       status: 'success',
+      bg:'#66bfbf',
       duration: 3000,
       isClosable: true,
       Button :true
@@ -49,14 +50,12 @@ const Context = ({children}) => {
 //FUNCION PARA CALCULAR EL PRECIO TOTAL //
  const precioTotal = ()=>{
  const totalPrice = cart.reduce((acc,prod)=>(acc= acc + prod.price * prod.quantity),0)
+
   return totalPrice.toFixed(3)
  }
  
  //FUNCION QUE RETORNA LA CANTIDAD DE OBJETOS//
- const prodCant = ()=>{
-   const cantidadProducts = cart.reduce((acc,prod)=>(acc = acc + prod.quantity ),0 )
-   return cantidadProducts
- }
+
 
 
 
@@ -64,7 +63,6 @@ const Context = ({children}) => {
     <CartContext.Provider value={{
  addProduct,
  precioTotal,
- prodCant,
  cart,
     }}>
          {children}
