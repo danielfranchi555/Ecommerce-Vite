@@ -14,14 +14,22 @@ const ItemCount = ({initial,stock,onAdd}) => {
 
 
   return (
-    <div style={{display:'flex', alignItems:'center', marginLeft:'10px'}}>
-       <Button  mr='20px' padding ={5} onClick={()=>onAdd(count)} variant='solid' color='#66bfbf'>
+    <div  style={{display:'flex',marginTop:'20px'}}>
+      <div>
+          <Button  mr='10px'  onClick={()=>onAdd(count)} variant='solid' color='#66bfbf'>
         Add to Cart
       </Button>
+      </div>
+     
      { count <= initial ? 
-    <button  className='disabled btn'  onClick={()=>decrement()}>-</button>
+     <div>
+
+       <button  className='disabled btn'  onClick={()=>decrement()}>-</button>
+     </div>
     :
-    <button className='btn' style={{backgroundColor:'#66bfbf'}} onClick={()=>decrement()}>-</button>
+    <div>
+      <button className='btn' style={{backgroundColor:'#66bfbf'}} onClick={()=>decrement()}>-</button>
+    </div>
      }
      <Box m='10px'>
 
