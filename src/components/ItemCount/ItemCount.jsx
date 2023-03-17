@@ -2,6 +2,7 @@ import { Box, Button } from '@chakra-ui/react'
 import React, { useState } from 'react'
 
 const ItemCount = ({initial,stock,onAdd}) => {
+  
     const [count ,setCount] =useState(initial)
 
     const increment = ()=>{

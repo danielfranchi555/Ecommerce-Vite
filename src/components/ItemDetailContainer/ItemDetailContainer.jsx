@@ -15,7 +15,6 @@ const ItemDetailContainer = () => {
       const prod = await getDoc(doc(db, "products", id));
       setProduct({id:prod.id , ... prod.data()})
       setLoading(false)
-      console.log(prod)
     }
     
     useEffect(()=>{

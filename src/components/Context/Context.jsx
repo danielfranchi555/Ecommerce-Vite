@@ -10,27 +10,25 @@ export const UseCartContext = ()=> useContext(CartContext)
 const Context = ({children}) => {
 
   const [cart,setCart]= useState([])
+  const [countProducts,setCountProducts]= useState(0)
+
   const toast = useToast()
+
+
+
   // HAGO UN GET DE TODOS LOS PRODUCTOS DEL LOCALSTORAGE//
-  const dataLocalStorage = localStorage.getItem('products')
    
- 
-  
-
-
-
- 
-
 
 /*FUNCION PARA AGREGAR PRODUCTOS AL CARRITO */
   const addProduct = (product)=>{
    const idx = cart.findIndex((prod)=>prod.id === product.id) 
    if(idx !== -1 ){
      //si el producto existe// 
-     const cant = cart[idx].quantity
-     cart[idx].quantity += 1 
+     cart[idx].quantity = cart[idx].quantity + product.quantity
+     setCountProducts( countProducts + product.quantity)
    }else{
    // y si no existe que lo agregue al cart//
+   setCountProducts(countProducts + product.quantity)
    setCart([...cart,product])
      toast({
       title: 'Producto agregado al carrito.',
@@ -40,21 +38,18 @@ const Context = ({children}) => {
       isClosable: true,
       Button :true
     })
-
   } 
-
-   
 }
-  
-  console.log(cart)
-//FUNCION PARA CALCULAR EL PRECIO TOTAL //
+
+
+
+
+
+ //FUNCION PARA CALCULAR EL PRECIO TOTAL //
  const precioTotal = ()=>{
  const totalPrice = cart.reduce((acc,prod)=>(acc= acc + prod.price * prod.quantity),0)
-
   return totalPrice.toFixed(3)
  }
- 
- //FUNCION QUE RETORNA LA CANTIDAD DE OBJETOS//
 
 
 
@@ -62,8 +57,11 @@ const Context = ({children}) => {
   return (
     <CartContext.Provider value={{
  addProduct,
+ setCart,
  precioTotal,
+ countProducts,
  cart,
+ setCountProducts
     }}>
          {children}
     </CartContext.Provider>

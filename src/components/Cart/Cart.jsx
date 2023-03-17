@@ -1,15 +1,24 @@
 import { Button, Center, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
-import React from 'react'
+import React  from 'react'
 import { UseCartContext } from '../Context/Context'
 import Form from '../Form/Form'
 
 const Cart = () => {
-  const {cart,precioTotal} = UseCartContext()
- 
-  const deleteProduct =()=>{
-    localStorage.removeItem('igwtMbxJVQJ13aPwSdRh')
+  const {cart,precioTotal,setCart,setCountProducts,countProducts} = UseCartContext()
+
+  console.log(countProducts)
+
+  const deleteProduct =(product)=>{
+   const newArray = cart.filter(prod => prod.id != product.id)
+
+   setCart(newArray)
+   setCountProducts(countProducts - product.quantity)
   } 
+
+
+
  
+
   return (
     <div style={{textAlign:'center'}}>
       <h1 style={{fontSize:'50px'}}>Cart</h1>
@@ -30,10 +39,10 @@ const Cart = () => {
       {cart.map((item)=>(
          <Tr key={item.id}>
         <Td> <img src={item.image} style={{width:'100px'}}alt="" /> </Td>
-        <Td>{item.price}</Td>
-        <Td>{item.quantity}</Td>
-        <Td>{item.quantity * item.price}$</Td>
-        <Td><Button bg='red' onClick={()=>deleteProduct()} color='white' >Delete</Button></Td>
+        <Td>$ {item.price}</Td>
+        <Td>{item.quantity}  </Td>
+        <Td>$ {item.quantity * item.price}</Td>
+        <Td><Button bg='red' onClick={()=>deleteProduct(item)} color='white' >Delete</Button></Td>
 
       </Tr>
       ))} 
