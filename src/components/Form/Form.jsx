@@ -1,56 +1,87 @@
-import { Box, Button, Input } from '@chakra-ui/react'
+import { Box, Button, Center, Flex, FormLabel, Input, InputGroup, InputLeftElement, Spacer, Text, Wrap, WrapItem } from '@chakra-ui/react'
 import {db} from '../../firebase'
 import { addDoc, collection } from 'firebase/firestore'
 import React, { useState } from 'react'
 import { UseCartContext } from '../Context/Context'
+import { EmailIcon, PhoneIcon } from '@chakra-ui/icons'
 
 const Form = () => {
-  const {cart,precioTotal} = UseCartContext()
-
-  const[info,setInfo]=useState({
-    
-    items:[cart],
-    total:precioTotal()
-  }
-    )
-  const[order,setOrder]= useState(null)
  
+  const initialState = {}
 
+  const {cart,precioTotal} = UseCartContext()
+  const[buyer,setBuyer]=useState(initialState)
+  const [order,setOrder]= useState({})
 
+  
 
   
   const handleChange = (e)=>{
-        
-      
-  
-  }
+        const {name,value} = e.target
+        setBuyer({...buyer,[name]:value})
+   }
 
     const handleSubmit =  (e)=>{
-    e.preventDefault()
-    if(info.email === '' || info.name === '' || info.phone === ''){
-        alert('ingresa todos los datos')
-    }else{   
-      setOrder(info)  
-       console.log(order) 
-    }
-    }
+
+     e.preventDefault()
+     if(!buyer.email || !buyer.name || !buyer.phone ){
+      alert('Porfavor completa todos los datos')
+     }else{
+      setOrder({...order,buyer,cart})
+      console.log(order)
+     }
 
 
-    console.log(order)
+      setBuyer({name:'',email:'',phone:''})
+
+    } 
+
+
   return (
-    <Box mt='50px' maxW ='300px'>  
-    <h1>Formulario</h1>
+<Flex direction='column' gap='10px' mt='20px'width={{base:'300px',md:'700px'}}>
+  <Box p='4' bg='black'>
+   <Text color='white'>
+     Completa el formulario para terminar la compra
+    </Text>
+  </Box>
+  <Spacer />
+  <Box p='4' >
     <form onSubmit={handleSubmit}>
-     <Input onChange={handleChange} value={info.email}  variant='filled' placeholder='email' type='email' name='email' />
-     <Input onChange={handleChange} value={info.name}   variant='filled' placeholder='name' type='text'  name='name'/>
-     <Input onChange={handleChange} value={info.phone}  variant='filled' placeholder='phone' type='number' name='phone' />
-     <Button type='submit' > Enviar</Button>
-    </form>
-        
+      <FormLabel  m='10px'>  Email</FormLabel>
+      <InputGroup  >
+    <InputLeftElement
+      children={<EmailIcon color='gray.300' />}
+    />
+    <Input onChange={handleChange} value={buyer.email}   variant='filled'  type='email'  name='email'  placeholder='Email' />
+  </InputGroup>     
+  
+  <FormLabel  m='10px'>  Name</FormLabel>
+  <InputGroup  >
+  
+    <Input onChange={handleChange} value={buyer.name}   variant='filled'  type='text'  name='name' placeholder='Name' />
+  </InputGroup>      
+  
+  <FormLabel  m='10px'>  Phone</FormLabel>
+  <InputGroup  >
+    <InputLeftElement
+      children={<PhoneIcon color='gray.300' />}
+    />
+    <Input onChange={handleChange} value={buyer.phone}   variant='filled'  type='number'  name='phone' placeholder='Phone ' />
+  </InputGroup> 
+<Center>
+<Flex>
+  <Box p='4'  >
+  <span style={{fontWeight:'700',marginRight:'10px'}}>Precio Total </span>  ${precioTotal()}
+  <Button type='submit' size='lg' ml='20px' color='#66bfbf' border='solid' variant='outline'>Checkout</Button>
+  </Box>
+</Flex>
+</Center>
 
 
-    </Box>
+  
+  </form>  
+  </Box>
+</Flex>
   )
 }
-
 export default Form

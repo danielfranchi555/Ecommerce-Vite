@@ -2,7 +2,6 @@ import { Box, Card, CardBody, CardFooter, Center, Heading, Image, Stack, Text, u
 import React, { useEffect } from 'react'
 import { UseCartContext } from '../Context/Context'
 import ItemCount from '../ItemCount/ItemCount'
-
 const ItemDetail = ({product}) => {
   const toast = useToast()
 
