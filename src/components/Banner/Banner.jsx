@@ -1,14 +1,22 @@
-import { AspectRatio, Center, Image } from '@chakra-ui/react'
+import { AspectRatio, Box, Center, Image } from '@chakra-ui/react'
 import React from 'react'
-
-import bannerFotoDos from '../../img/banner-dos-min.jpg'
+import  Fade  from 'react-reveal'
+import banner from '../../img/banner-ecommerce.jpg'
 
 const Banner = () => {
   return (
+    <Fade>
+  <Image
+  boxSize='100%'
+  h='300px'
+  objectFit='cover'
+  src={banner}
+  alt='Dan Abramov'
+/>
+    </Fade>
+
   
-    <AspectRatio maxW='10000px' ratio={10 / 4}>
-    <Image src={bannerFotoDos} alt='naruto' objectFit='cover' />
-  </AspectRatio>
+
  
     ) 
 }

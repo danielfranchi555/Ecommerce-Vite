@@ -4,35 +4,37 @@ import { addDoc, collection } from 'firebase/firestore'
 import React, { useState } from 'react'
 import { UseCartContext } from '../Context/Context'
 import { EmailIcon, PhoneIcon } from '@chakra-ui/icons'
+import { Await } from 'react-router-dom'
 
 const Form = () => {
  
   const initialState = {}
 
   const {cart,precioTotal} = UseCartContext()
+
   const[buyer,setBuyer]=useState(initialState)
   const [order,setOrder]= useState({})
 
   
-
+ const orderCollection = collection(db,'orders')
   
   const handleChange = (e)=>{
         const {name,value} = e.target
         setBuyer({...buyer,[name]:value})
+        setOrder({...order,buyer,cart})
+
    }
 
-    const handleSubmit =  (e)=>{
+    const handleSubmit = async  (e)=>{
 
      e.preventDefault()
      if(!buyer.email || !buyer.name || !buyer.phone ){
       alert('Porfavor completa todos los datos')
      }else{
-      setOrder({...order,buyer,cart})
       console.log(order)
      }
-
-
-      setBuyer({name:'',email:'',phone:''})
+    await addDoc(orderCollection,order)
+     /*  setBuyer({name:'',email:'',phone:''}) */
 
     } 
 

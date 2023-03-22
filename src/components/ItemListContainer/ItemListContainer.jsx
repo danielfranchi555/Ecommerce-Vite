@@ -60,6 +60,7 @@ const ItemListContainer = () => {
    
  
    <Box >
+    <Banner></Banner>
      <Box mt='15px'>
       <Categories/>
     </Box>
