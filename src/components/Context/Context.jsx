@@ -1,5 +1,5 @@
 import {  useToast } from '@chakra-ui/react'
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
  // CREO EL CONTEXTO //
 export const CartContext = createContext()
 
@@ -9,27 +9,60 @@ export const UseCartContext = ()=> useContext(CartContext)
 
 const Context = ({children}) => {
 
-  const [cart,setCart]= useState([])
-  const [countProducts,setCountProducts]= useState(0)
+  
+
+// traigo los productos del localStorage y los a
+const getProducts = ()=>{
+  let datos = localStorage.getItem("cart")
+  if(datos){
+    return JSON.parse(datos)
+  }else{
+    return []
+  }
+ }
+
+
+//traigo la cantidad total del localStorage
+ const getQuantity = () => {
+  let totalQuantity = localStorage.getItem("quantity")
+  if (totalQuantity){
+      return JSON.parse(totalQuantity)
+  }else{
+    return 0
+  }
+ }
+
+  const [cart,setCart]=useState(getProducts())
+  const [countProducts,setCountProducts]= useState(getQuantity())
 
   const toast = useToast()
 
 
 
-  // HAGO UN GET DE TODOS LOS PRODUCTOS DEL LOCALSTORAGE//
+
+ 
+
+  useEffect(()=>{
+    localStorage.setItem("cart",JSON.stringify(cart))
+   },[cart])
+
    
+  useEffect(()=>{
+    localStorage.setItem("quantity",JSON.stringify(countProducts))
+   },[countProducts])
+
+   
+
 
 /*FUNCION PARA AGREGAR PRODUCTOS AL CARRITO */
   const addProduct = (product)=>{
    const idx = cart.findIndex((prod)=>prod.id === product.id) 
+   console.log(idx)
    if(idx !== -1 ){
-     //si el producto existe// 
+   //si el producto existe// 
+   console.log('si existe')
      cart[idx].quantity = cart[idx].quantity + product.quantity
-     setCountProducts( countProducts + product.quantity)
-   }else{
-   // y si no existe que lo agregue al cart//
-   setCountProducts(countProducts + product.quantity)
-   setCart([...cart,product])
+     setCountProducts( countProducts + product.quantity) 
      toast({
       title: 'Producto agregado al carrito.',
       status: 'success',
@@ -38,10 +71,21 @@ const Context = ({children}) => {
       isClosable: true,
       Button :true
     })
+   }else{
+   // y si no existe que lo agregue al cart//
+   setCountProducts(countProducts + product.quantity)
+   setCart([...cart,product])
+     toast({      
+      title: 'Producto agregado al carrito.',
+      status: 'success',
+      bg:'#66bfbf',
+      duration: 3000,
+      isClosable: true,
+      Button :true
+    })
   } 
+   
 }
-
-
 
 
 

@@ -11,9 +11,7 @@ const onAdd = (quantity)=>{
   addProduct({...product,quantity})
 }
 
-useEffect(()=>{
-  localStorage.setItem('products', JSON.stringify(cart))
-},[cart])
+
 
 
 

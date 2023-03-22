@@ -1,11 +1,11 @@
-import { Box, Button, Center, Table, TableCaption, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
-import React  from 'react'
+import { Box, Button, Center, Table, TableCaption, TableContainer, Tbody, Td,Th, Thead, Tr } from '@chakra-ui/react'
+import React, { useEffect, useState }  from 'react'
 import { UseCartContext } from '../Context/Context'
 import Form from '../Form/Form'
 
 const Cart = () => {
   const {cart,precioTotal,setCart,setCountProducts,countProducts} = UseCartContext()
-
+  
 
   const deleteProduct =(product)=>{
    const newArray = cart.filter(prod => prod.id != product.id)
@@ -15,12 +15,16 @@ const Cart = () => {
 
 
 
+
+
+
  
+
 
   return (
     <div style={{textAlign:'center'}}>
       <h1 style={{fontSize:'50px'}}>Cart</h1>
-      {cart.length === 0 ?
+      {!cart ?
      <h1 style={{fontSize:'30px'}}>No hay productos en el carrito</h1>  
      :
               <TableContainer color='black' >
@@ -51,7 +55,7 @@ const Cart = () => {
       
     }
 
-{cart.length != 0 &&
+{cart  &&
 <Center>
 
 <Form/>
