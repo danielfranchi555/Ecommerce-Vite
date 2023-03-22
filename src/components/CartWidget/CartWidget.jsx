@@ -1,3 +1,4 @@
+import { Box, Center, Text } from '@chakra-ui/react'
 import carritoPng from '../../img/carrito-compras.png'
 import { UseCartContext } from '../Context/Context'
 const CartWidget = () => {
@@ -8,8 +9,12 @@ const CartWidget = () => {
   return (
     <div style={{display:'flex',alignItems:'center'}}>
      <div>
-        <span style={{fontWeight:'700'}}>{countProducts} 
-          </span>
+        <Box   color='black' w='20px' borderRadius='full' style={{fontWeight:'500'}}>
+          <Center>
+
+           <Text>{countProducts} </Text>
+          </Center>
+           </Box>
     </div>
     <div>
         <img style={{width:'45px'}} src={carritoPng} alt="" />
