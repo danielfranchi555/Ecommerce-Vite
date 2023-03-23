@@ -34,7 +34,7 @@ const Cart = () => {
 
   return (
     <div style={{textAlign:'center'}}>
-      <h1 style={{fontSize:'50px'}}>Cart</h1>{
+      <h1 style={{fontSize:'51px'}}>Cart</h1>{
         success ? <h1>
          {alert(id)}
         </h1>:
