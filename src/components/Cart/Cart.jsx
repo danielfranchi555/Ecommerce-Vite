@@ -1,11 +1,18 @@
 import { Alert, AlertIcon,  Button, Center, Table, TableContainer, Tbody, Td,Th, Thead, Tr } from '@chakra-ui/react'
+import swal from 'sweetalert'
 import { UseCartContext } from '../Context/Context'
 import Form from '../Form/Form'
 
 const Cart = () => {
-  const {cart,setCart,setCountProducts,countProducts,subTotal} = UseCartContext()
+   const {cart,setCart,setCountProducts,countProducts,subTotal,success,id} = UseCartContext()
   
+   const alert = (id)=>{
+    swal({
+      title:'Muchas gracias por tu compra!!',
+      text: ` tu nro de orden es  "${id}" `,
 
+    });
+  } 
   const deleteProduct =(product)=>{
    const newArray = cart.filter(prod => prod.id != product.id)
    setCart(newArray)
@@ -20,7 +27,6 @@ const Cart = () => {
    }
   
 
- console.log(subTotal)
 
 
  
@@ -28,8 +34,14 @@ const Cart = () => {
 
   return (
     <div style={{textAlign:'center'}}>
-      <h1 style={{fontSize:'50px'}}>Cart</h1>
-      {cart.length === 0  ?
+      <h1 style={{fontSize:'50px'}}>Cart</h1>{
+        success ? <h1>
+         {alert(id)}
+        </h1>:
+
+
+      
+      cart.length === 0  ?
          <Alert mt='50px' padding='30px' flexDirection='row'
          alignItems='center' justifyContent='center'
          textAlign='center'

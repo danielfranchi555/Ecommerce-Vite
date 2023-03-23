@@ -35,6 +35,7 @@ const getProducts = ()=>{
 
   const [success,setSuccess]= useState(false)
   const [cart,setCart]=useState(getProducts())
+  const [id,setId]=useState(null)
   const [countProducts,setCountProducts]= useState(getQuantity())
 
   const toast = useToast()
@@ -52,7 +53,6 @@ const getProducts = ()=>{
    },[cart])
 
    
- console.log(cart)
 
    
 
@@ -60,10 +60,8 @@ const getProducts = ()=>{
 /*FUNCION PARA AGREGAR PRODUCTOS AL CARRITO */
   const addProduct = (product)=>{
    const idx = cart.findIndex((prod)=>prod.id === product.id) 
-   console.log(idx)
    if(idx !== -1 ){
    //si el producto existe// 
-   console.log('si existe',cart)
      cart[idx].quantity = cart[idx].quantity + product.quantity
      setCountProducts( countProducts + product.quantity) 
      setCart([...cart])
@@ -105,7 +103,6 @@ const getProducts = ()=>{
   
 }
 
-console.log(subTotal)
   return (
     <CartContext.Provider value={{
  addProduct,
@@ -116,7 +113,9 @@ console.log(subTotal)
  setCountProducts,
  setSuccess,
  success,
- subTotal
+ subTotal,
+ id,
+ setId
     }}>
          {children}
     </CartContext.Provider>
