@@ -24,13 +24,21 @@ npm run dev
 ## Dependencias Usadas
 
 - Vite : Para iniciar el proyecto
-- Chakra ui, Booststrap y Sass: Para dar estilo a la pagina
-- React-Router-Dom: Para el manejo de rutas
-- Firebase-Firestore: Para la base de datos
-- React-reveal: Para darle animaciones a la app
-- Firebase-Firestore: Para la base de datos
-- Sweetalert: Para las alertas
+- Chakra ui: Para dar estilos || version: ("^2.5.3")
+- Bootstrap: Para dar estilos || version: ("^5.2.3")
+- Sass: Para dar estilos || version: ("^1.59.3")
+- React-Router-Dom: Para el manejo de rutas  || version: ("^6.8.2")
+- Firebase-Firestore: Para la base de datos  || version: ("^9.17.2")
+- React-reveal: Para darle animaciones a la app  || version: ("^1.2.2")
+- Firebase-Firestore: Para la base de datos || version: ("^2.1.2")
+- Sweetalert: Para las alertas || version: ("^2.1.2")
 
 
 ## Deploy 
+- Link: https://ecommerce-vite.vercel.app/
+# Contacto 
+**Daniel Franchi**
 
+Desarrolador Frontend
+
+ Linkedin: https://www.linkedin.com/in/daniel-franchi-409359238//
