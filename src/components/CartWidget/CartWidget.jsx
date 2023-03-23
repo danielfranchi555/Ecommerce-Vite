@@ -7,6 +7,7 @@ const CartWidget = () => {
   const {countProducts}= UseCartContext()
 
 
+  
   return (
     <div style={{display:'flex',alignItems:'center'}}>
      <div>

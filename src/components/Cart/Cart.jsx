@@ -1,4 +1,4 @@
-import { Box, Button, Center, Table, TableCaption, TableContainer, Tbody, Td,Th, Thead, Tr } from '@chakra-ui/react'
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Center, Table, TableCaption, TableContainer, Tbody, Td,Th, Thead, Tr } from '@chakra-ui/react'
 import React, { useEffect, useState }  from 'react'
 import { UseCartContext } from '../Context/Context'
 import Form from '../Form/Form'
@@ -13,9 +13,17 @@ const Cart = () => {
    setCountProducts(countProducts - product.quantity)
   } 
 
+  const deleteAllProducts = ()=>{
+    const emptyCart = []
+    setCart(emptyCart)
+    setCountProducts(countProducts === '0')
 
+   }
+  
 
-
+ const subTotal = (quantity,price)=>{
+   return quantity * price.toFixed(3)
+ }
 
 
  
@@ -24,8 +32,17 @@ const Cart = () => {
   return (
     <div style={{textAlign:'center'}}>
       <h1 style={{fontSize:'50px'}}>Cart</h1>
-      {!cart ?
-     <h1 style={{fontSize:'30px'}}>No hay productos en el carrito</h1>  
+      {cart.length === 0  ?
+      
+         <Alert mt='50px' padding='30px' flexDirection='row'
+         alignItems='center' justifyContent='center'
+         textAlign='center'
+        status='warning'>
+     <AlertIcon />
+     No hay productos en el carrito 
+   </Alert>
+  
+    
      :
               <TableContainer color='black' >
   <Table variant='simple' >
@@ -45,22 +62,25 @@ const Cart = () => {
         <Td> <img src={item.image} style={{width:'100px'}}alt="" /> </Td>
         <Td>$ {item.price}</Td>
         <Td>{item.quantity}  </Td>
-        <Td>$ {item.quantity * item.price}</Td>
-        <Td><Button bg='red' onClick={()=>deleteProduct(item)} color='white' >Delete</Button></Td>
+        <Td>$ {subTotal(item.quantity,item.price)}</Td>
+        <Td><Button  variant='outline' colorScheme='red' onClick={()=>deleteProduct(item)}  >Delete</Button></Td>
       </Tr>
       ))} 
+     
     </Tbody>
   </Table>
+  <Center mt='20px'>
+      <Button  variant='outline' colorScheme='red' onClick={()=>deleteAllProducts()}>Delete All</Button>
+      </Center>
 </TableContainer>
-      
     }
-
-{cart  &&
 <Center>
-
+{cart.length != 0 &&
 <Form/>
-</Center>
 }
+
+</Center>
+
 
         
     </div>

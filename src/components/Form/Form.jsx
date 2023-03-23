@@ -1,23 +1,24 @@
-import { Box, Button, Center, Flex, FormLabel, Input, InputGroup, InputLeftElement, Spacer, Text, Wrap, WrapItem } from '@chakra-ui/react'
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Center, Flex, FormLabel, Input, InputGroup, InputLeftElement, Spacer, Text, Wrap, WrapItem } from '@chakra-ui/react'
 import {db} from '../../firebase'
 import { addDoc, collection } from 'firebase/firestore'
 import React, { useState } from 'react'
 import { UseCartContext } from '../Context/Context'
 import { EmailIcon, PhoneIcon } from '@chakra-ui/icons'
-import { Await } from 'react-router-dom'
 
 const Form = () => {
  
   const initialState = {}
 
-  const {cart,precioTotal} = UseCartContext()
-
-  const[buyer,setBuyer]=useState(initialState)
+  const {cart,precioTotal,setSuccess,success} = UseCartContext()
+  const [buyer,setBuyer]=useState(initialState)
   const [order,setOrder]= useState({})
-
+  const [id,setId]=useState(null)
   
  const orderCollection = collection(db,'orders')
   
+
+ const totalPrice = ()=>  precioTotal ()
+
   const handleChange = (e)=>{
         const {name,value} = e.target
         setBuyer({...buyer,[name]:value})
@@ -33,21 +34,42 @@ const Form = () => {
      }else{
       console.log(order)
      }
-    await addDoc(orderCollection,order)
-     /*  setBuyer({name:'',email:'',phone:''}) */
-
+    await addDoc(orderCollection,order).then(({id})=>setId(id))
+    setSuccess(true)
+      setBuyer({name:'',email:'',phone:''})
+      setSuccess(false)
     } 
 
 
   return (
-<Flex direction='column' gap='10px' mt='20px'width={{base:'300px',md:'700px'}}>
+    <>
+        {success ? 
+        <Alert
+        status='success'
+        variant='subtle'
+        flexDirection='column'
+        alignItems='center'
+        justifyContent='center'
+        textAlign='center'
+        height='200px'
+      >
+        <AlertIcon boxSize='40px' mr={0} />
+        <AlertTitle mt={4} mb={1} fontSize='lg'>
+          Muchas gracias por tu compra !!
+        </AlertTitle>
+        <AlertDescription maxWidth='sm'>
+          Tu numero de orden es  <Text fontWeight='700' fontSize='20px'>"{id}"</Text> 
+        </AlertDescription>
+      </Alert>
+        :
+    
+<Flex direction='column' gap='10px' mt='40px'width={{base:'300px',md:'700px'}}>
   <Box p='4' bg='black'>
-   <Text color='white'>
-     Completa el formulario para terminar la compra
-    </Text>
+   <Text fontWeight='700' color='white'>
+   Complete the form to finish </Text>
   </Box>
   <Spacer />
-  <Box p='4' >
+  <Box  >
     <form onSubmit={handleSubmit}>
       <FormLabel  m='10px'>  Email</FormLabel>
       <InputGroup  >
@@ -73,17 +95,20 @@ const Form = () => {
 <Center>
 <Flex>
   <Box p='4'  >
-  <span style={{fontWeight:'700',marginRight:'10px'}}>Precio Total </span>  ${precioTotal()}
+  <span style={{fontWeight:'700',marginRight:'10px'}}>Total Price </span>  ${precioTotal()}
   <Button type='submit' size='lg' ml='20px' color='#66bfbf' border='solid' variant='outline'>Checkout</Button>
   </Box>
 </Flex>
 </Center>
-
+ 
 
   
   </form>  
   </Box>
 </Flex>
+    }
+    </>
+
   )
 }
 export default Form

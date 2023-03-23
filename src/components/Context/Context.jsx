@@ -1,4 +1,4 @@
-import {  useToast } from '@chakra-ui/react'
+import {useToast } from '@chakra-ui/react'
 import React, { createContext, useContext, useEffect, useState } from 'react'
  // CREO EL CONTEXTO //
 export const CartContext = createContext()
@@ -11,7 +11,7 @@ const Context = ({children}) => {
 
   
 
-// traigo los productos del localStorage y los a
+// traigo los productos del localStorage 
 const getProducts = ()=>{
   let datos = localStorage.getItem("cart")
   if(datos){
@@ -24,7 +24,8 @@ const getProducts = ()=>{
 
 //traigo la cantidad total del localStorage
  const getQuantity = () => {
-  let totalQuantity = localStorage.getItem("quantity")
+  const totalQuantity = localStorage.getItem("quantity")
+
   if (totalQuantity){
       return JSON.parse(totalQuantity)
   }else{
@@ -32,6 +33,7 @@ const getProducts = ()=>{
   }
  }
 
+  const [success,setSuccess]= useState(false)
   const [cart,setCart]=useState(getProducts())
   const [countProducts,setCountProducts]= useState(getQuantity())
 
@@ -39,17 +41,18 @@ const getProducts = ()=>{
 
 
 
-
+  useEffect(()=>{
+    localStorage.setItem("quantity",JSON.stringify(countProducts))
+   },[countProducts])
  
+
 
   useEffect(()=>{
     localStorage.setItem("cart",JSON.stringify(cart))
    },[cart])
 
    
-  useEffect(()=>{
-    localStorage.setItem("quantity",JSON.stringify(countProducts))
-   },[countProducts])
+ console.log(cart)
 
    
 
@@ -60,9 +63,10 @@ const getProducts = ()=>{
    console.log(idx)
    if(idx !== -1 ){
    //si el producto existe// 
-   console.log('si existe')
+   console.log('si existe',cart)
      cart[idx].quantity = cart[idx].quantity + product.quantity
      setCountProducts( countProducts + product.quantity) 
+     setCart([...cart])
      toast({
       title: 'Producto agregado al carrito.',
       status: 'success',
@@ -97,7 +101,6 @@ const getProducts = ()=>{
 
 
 
-
   return (
     <CartContext.Provider value={{
  addProduct,
@@ -105,7 +108,9 @@ const getProducts = ()=>{
  precioTotal,
  countProducts,
  cart,
- setCountProducts
+ setCountProducts,
+ setSuccess,
+ success
     }}>
          {children}
     </CartContext.Provider>
