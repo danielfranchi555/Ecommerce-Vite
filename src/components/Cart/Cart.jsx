@@ -1,10 +1,9 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Center, Table, TableCaption, TableContainer, Tbody, Td,Th, Thead, Tr } from '@chakra-ui/react'
-import React, { useEffect, useState }  from 'react'
+import { Alert, AlertIcon,  Button, Center, Table, TableContainer, Tbody, Td,Th, Thead, Tr } from '@chakra-ui/react'
 import { UseCartContext } from '../Context/Context'
 import Form from '../Form/Form'
 
 const Cart = () => {
-  const {cart,precioTotal,setCart,setCountProducts,countProducts} = UseCartContext()
+  const {cart,setCart,setCountProducts,countProducts,subTotal} = UseCartContext()
   
 
   const deleteProduct =(product)=>{
@@ -21,9 +20,7 @@ const Cart = () => {
    }
   
 
- const subTotal = (quantity,price)=>{
-   return quantity * price.toFixed(3)
- }
+ console.log(subTotal)
 
 
  

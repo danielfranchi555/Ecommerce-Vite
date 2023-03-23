@@ -3,7 +3,6 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown'
 import { Link } from 'react-router-dom';
 import logo from '../../img/logo.png'
 import CartWidget from '../CartWidget/CartWidget';
@@ -15,8 +14,7 @@ const NavBar = () => {
     <Container>
       <Link to={"/"}>
         <Center>
-
-      <Navbar.Brand href="#home"> <img src={logo} style={{width:'50px'}}alt="" /> </Navbar.Brand>
+      <Navbar.Brand href="#home"> <img src={logo} style={{width:'50px'}}alt="logo" /> </Navbar.Brand>
         </Center>
       </Link>
 

@@ -100,7 +100,12 @@ const getProducts = ()=>{
  }
 
 
+ const subTotal = (quantity,price)=>{
+  return quantity * price.toFixed(3) 
+  
+}
 
+console.log(subTotal)
   return (
     <CartContext.Provider value={{
  addProduct,
@@ -110,7 +115,8 @@ const getProducts = ()=>{
  cart,
  setCountProducts,
  setSuccess,
- success
+ success,
+ subTotal
     }}>
          {children}
     </CartContext.Provider>

@@ -9,20 +9,22 @@ const Form = () => {
  
   const initialState = {}
 
-  const {cart,precioTotal,setSuccess,success,setCart} = UseCartContext()
+  const {cart,precioTotal,setSuccess,success} = UseCartContext()
   const [buyer,setBuyer]=useState(initialState)
   const [order,setOrder]= useState({})
   const [id,setId]=useState(null)
   
  const orderCollection = collection(db,'orders')
-  
 
- const totalPrice = ()=>  precioTotal ()
+
+
+ const items = cart.map(item => ({id:item.id ,product:item.title, price:item.price}))
+ const total = precioTotal()
 
   const handleChange = (e)=>{
         const {name,value} = e.target
         setBuyer({...buyer,[name]:value})
-        setOrder({...order,buyer,cart})
+        setOrder({...order,buyer,items,total})
 
    }
 
@@ -32,10 +34,10 @@ const Form = () => {
      if(!buyer.email || !buyer.name || !buyer.phone ){
       alert('Porfavor completa todos los datos')
      }else{
+      await addDoc(orderCollection,order).then(({id})=>setId(id))
+    setSuccess(true)
       console.log(order)
      }
-    await addDoc(orderCollection,order).then(({id})=>setId(id))
-    setSuccess(true)
       setBuyer({name:'',email:'',phone:''})
     } 
 
