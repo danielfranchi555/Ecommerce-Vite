@@ -1,11 +1,10 @@
-import { Box, Card, CardBody, CardFooter, Center, Heading, Image, Stack, Text, useToast } from '@chakra-ui/react'
-import React, { useEffect } from 'react'
+import { Box, Card, CardBody, Center, Heading, Image, Text, useToast } from '@chakra-ui/react'
 import { UseCartContext } from '../Context/Context'
 import ItemCount from '../ItemCount/ItemCount'
 const ItemDetail = ({product}) => {
   const toast = useToast()
 
-  const {addProduct,cart} =UseCartContext()
+  const {addProduct} =UseCartContext()
  
 const onAdd = (quantity)=>{
   addProduct({...product,quantity})
@@ -20,8 +19,10 @@ const onAdd = (quantity)=>{
   direction={{ base: 'column', sm: 'row' }}
   overflow='hidden'
   variant='outline'
-  maxW={{ base:'340px', sm: '700px' }}
-  mt='60px' 
+  w={{base:'auto',md:'900px'}}
+  h={{base:'700px',md:'400px'}}
+
+  
 >
   <Center>
       <Image

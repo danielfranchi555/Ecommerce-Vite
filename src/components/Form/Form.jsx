@@ -9,7 +9,7 @@ const Form = () => {
  
   const initialState = {}
 
-  const {cart,precioTotal,setSuccess,success} = UseCartContext()
+  const {cart,precioTotal,setSuccess,success,setCart} = UseCartContext()
   const [buyer,setBuyer]=useState(initialState)
   const [order,setOrder]= useState({})
   const [id,setId]=useState(null)
@@ -37,7 +37,6 @@ const Form = () => {
     await addDoc(orderCollection,order).then(({id})=>setId(id))
     setSuccess(true)
       setBuyer({name:'',email:'',phone:''})
-      setSuccess(false)
     } 
 
 

@@ -33,7 +33,6 @@ const Cart = () => {
     <div style={{textAlign:'center'}}>
       <h1 style={{fontSize:'50px'}}>Cart</h1>
       {cart.length === 0  ?
-      
          <Alert mt='50px' padding='30px' flexDirection='row'
          alignItems='center' justifyContent='center'
          textAlign='center'
@@ -41,8 +40,6 @@ const Cart = () => {
      <AlertIcon />
      No hay productos en el carrito 
    </Alert>
-  
-    
      :
               <TableContainer color='black' >
   <Table variant='simple' >
