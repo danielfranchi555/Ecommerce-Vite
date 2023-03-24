@@ -30,7 +30,6 @@ npm run dev
 - React-Router-Dom: Para el manejo de rutas  || version: ("^6.8.2")
 - Firebase-Firestore: Para la base de datos  || version: ("^9.17.2")
 - React-reveal: Para darle animaciones a la app  || version: ("^1.2.2")
-- Firebase-Firestore: Para la base de datos || version: ("^2.1.2")
 - Sweetalert: Para las alertas || version: ("^2.1.2")
 
 
