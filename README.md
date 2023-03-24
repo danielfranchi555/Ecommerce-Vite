@@ -25,7 +25,7 @@ npm run dev
 
 - Vite : Para iniciar el proyecto
 - Chakra ui: Para dar estilos || version: ("^2.5.3")
-- Bootstrap: Para dar estilos || version: ("^5.2.3")
+- react-bootstrap: Para dar estilos || version: ("^5.2.3")
 - Sass: Para dar estilos || version: ("^1.59.3")
 - React-Router-Dom: Para el manejo de rutas  || version: ("^6.8.2")
 - Firebase-Firestore: Para la base de datos  || version: ("^9.17.2")
